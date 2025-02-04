@@ -1,0 +1,40 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h2 class="mb-0">Sala: <%= @chat_room.name %></h2>
+          <%= link_to "Voltar para salas", chat_rooms_path, class: "btn btn-outline-secondary btn-sm" %>
+        </div>
+        
+        <div class="card-body">
+          <div data-controller="chat" 
+              data-chat-chat-room-id-value="<%= @chat_room.id %>"
+              data-chat-current-user-id-value="<%= current_user.id %>"
+              class="chat-container">
+            <div data-chat-target="messages" 
+                class="messages-container overflow-auto" 
+                style="max-height: 60vh;">
+              <%= render @messages, user: current_user %>
+            </div>
+            
+            <div class="input-group mt-3">
+              <input data-chat-target="input" 
+                    type="text" 
+                    class="form-control" 
+                    placeholder="Digite sua mensagem..."
+                    data-action="keypress->chat#onKeyPress">
+              <button data-chat-target="sendButton" 
+                      class="btn btn-primary"
+                      data-action="click->chat#sendMessage">
+                Enviar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="chat-room-id" data-id="<%= @chat_room.id %>" class="d-none"></div>
+    </div>
+  </div>
+</div>

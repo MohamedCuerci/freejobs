@@ -1,0 +1,30 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mb-4">Salas de Chat</h2>
+
+      <div class="card mb-4">
+        <div class="card-header">
+          Criar Nova Sala
+        </div>
+        <div class="card-body">
+          <%= form_with url: chat_rooms_path, method: :post, local: true do |f| %>
+            <div class="mb-3">
+              <%= f.label :name, "Nome da Sala", class: "form-label" %>
+              <%= f.text_field :name, class: "form-control" %>
+            </div>
+            <%= f.submit "Criar", class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="list-group">
+        <% @chat_rooms.each do |chat_room| %>
+          <%= link_to chat_room_path(chat_room), class: "list-group-item list-group-item-action" do %>
+            <%= chat_room.name %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

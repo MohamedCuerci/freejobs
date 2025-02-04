@@ -1,0 +1,8 @@
+<div class="message mb-2 <%= message.user == local_assigns[:user] ? 'text-end' : 'text-start' %>">
+  <div class="d-inline-block p-2 rounded <%= message.user == local_assigns[:user] ? 'bg-primary text-white' : 'bg-light' %>" style="max-width: 70%;">
+    <small class="d-block <%= message.user == local_assigns[:user] ? 'text-white-50' : 'text-muted' %>">
+      <%= message.user.email %>
+    </small>
+    <%= message.content %>
+  </div>
+</div>
