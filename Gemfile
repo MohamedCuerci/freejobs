@@ -58,7 +58,7 @@ end
 gem 'dartsass-sprockets'
 gem 'bootstrap', '~> 5.3.3'
 gem 'jquery-rails'
-gem 'rspec-rails', '~> 7.0.0'
+gem 'rspec-rails', '~> 7.1.0'
 gem "devise", "~> 4.9"
 
 
