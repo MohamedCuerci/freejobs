@@ -45,8 +45,25 @@ export default class extends Controller {
   }
 
   #received(data) {
-    this.messagesTarget.insertAdjacentHTML('beforeend', data.html)
+    const isCurrentUser = data.user_id.toString() === this.currentUserIdValue
+    const messageHTML = this.#buildMessageHTML(data, isCurrentUser)
+    this.messagesTarget.insertAdjacentHTML('beforeend', messageHTML)
     this.#scrollToBottom()
+  }
+
+  #buildMessageHTML(data, isCurrentUser) {
+    return `
+      <div class="message mb-2 ${isCurrentUser ? 'text-end' : 'text-start'}"
+           data-message-user-id="${data.user_id}">
+        <div class="d-inline-block p-2 rounded ${isCurrentUser ? 'bg-primary text-white' : 'bg-light'}" 
+             style="max-width: 70%;">
+          <small class="d-block ${isCurrentUser ? 'text-white-50' : 'text-muted'}">
+            ${data.user_email}
+          </small>
+          ${data.content}
+        </div>
+      </div>
+    `
   }
 
   #scrollToBottom() {

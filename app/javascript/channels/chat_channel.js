@@ -35,4 +35,37 @@ document.addEventListener('turbolinks:load', () => {
       }
     )
   }
+
+  document.addEventListener('turbolinks:load', () => {
+    const sendButton = document.getElementById('send-button')
+    const chatInput = document.getElementById('chat-input')
+    const chatContainer = document.getElementById('chat-container')
+  
+    if (sendButton && chatInput && chatContainer) {
+      const chatRoomId = chatContainer.dataset.chatroomId
+      const subscription = consumer.subscriptions.create(
+        { channel: "ChatChannel", chat_room_id: chatRoomId },
+        { received: data => {} }  // handled above
+      )
+  
+      const sendMessage = () => {
+        const content = chatInput.value.trim()
+        if (content) {
+          subscription.send({ content: content })
+          chatInput.value = ''
+        }
+      }
+  
+      sendButton.addEventListener('click', sendMessage)
+      
+      chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault()
+          sendMessage()
+        }
+      })
+    }
+  })
 })
+
+

@@ -18,20 +18,12 @@ class ChatChannel < ApplicationCable::Channel
       content: data["content"]
     )
 
-    # Renderiza a mensagem usando partial para HTML completo
-    html = ApplicationController.render(
-      partial: "messages/message",
-      locals: {
-        message: message,
-        user: current_user
-      }
-    )
-
     ActionCable.server.broadcast(
       "chat_#{chat_room_id}",
       {
-        message_user_id: current_user.id,
-        html: html
+        content: message.content,
+        user_email: message.user.email,
+        user_id: message.user.id
       }
     )
   end
