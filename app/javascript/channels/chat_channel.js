@@ -6,6 +6,7 @@ document.addEventListener('turbolinks:load', () => {
   if (chatContainer) {
     const chatRoomId = chatContainer.dataset.chatroomId
     const currentUserId = chatContainer.dataset.currentUserId
+    // console.log(`current_user no chat_channel.js ${currentUserId}`);
 
     consumer.subscriptions.create(
       {

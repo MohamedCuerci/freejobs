@@ -1,17 +1,18 @@
 class ChatChannel < ApplicationCable::Channel
   def subscribed
-    # ele passa aqui pra cada chat criado
     chat_room_id = params[:chat_room_id]
     stream_from "chat_#{chat_room_id}"
   end
 
   def unsubscribed
     # Opcional: lógica de limpeza quando o usuário sai do canal
+    # p "Usuário #{current_user.email} desconectado do chat #{params[:chat_room_id]}"
   end
 
   def receive(data)
     chat_room_id = params[:chat_room_id]
 
+    # p "dentro do chatChannel #{current_user.id}"
     message = Message.create!(
       user: current_user,
       chat_room_id: chat_room_id,

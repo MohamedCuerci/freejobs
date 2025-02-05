@@ -9,6 +9,7 @@ export default class extends Controller {
   }
 
   connect() {
+    // console.log("Chat controller conectado. Usuário atual:", this.currentUserIdValue)
     this.channel = consumer.subscriptions.create(
       {
         channel: "ChatChannel",

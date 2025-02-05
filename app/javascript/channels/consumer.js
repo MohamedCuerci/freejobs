@@ -3,11 +3,4 @@
 
 import { createConsumer } from "@rails/actioncable"
 
-
-const userId = document.cookie
-  .split('; ')
-  .find(row => row.startsWith('user_id='))
-  ?.split('=')[1];
-
-export default createConsumer(`/cable?user_id=${userId}`);
-// export default createConsumer()
+export default createConsumer()

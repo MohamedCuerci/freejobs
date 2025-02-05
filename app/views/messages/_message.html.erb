@@ -1,6 +1,9 @@
-<div class="message mb-2" data-message-user-id="<%= message.user.id %>">
-  <div class="d-inline-block p-2 rounded" style="max-width: 70%;">
-    <small class="d-block">
+<% is_current_user = message.user_id == current_user&.id %>
+
+<div class="message mb-2 <%= is_current_user ? 'text-end' : 'text-start' %>" data-message-user-id="<%= message.user.id %>">
+  <div class="d-inline-block p-2 rounded <%= is_current_user ? 'bg-primary text-white' : 'bg-light' %>" 
+       style="max-width: 70%;">
+    <small class="d-block <%= is_current_user ? 'text-white-50' : 'text-muted' %>">
       <%= message.user.email %>
     </small>
     <%= message.content %>
