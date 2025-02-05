@@ -14,6 +14,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   #
-  resources :chat_rooms, only: [ :index, :show, :create ]
+  resources :chat_rooms, only: [ :index, :show, :create, :destroy ]
   mount ActionCable.server => "/cable"
 end
