@@ -2,8 +2,8 @@
   <div class="container">
     <%= link_to root_path, class: "navbar-brand text-white" do %>
       <!--<i class="fa-solid fa-house-chimney"></i>-->
-      FREEJOBS
-      <i class="fa-solid fa-dumbbell"></i>
+      FREECHAT
+      <i class="fa-regular fa-comment"></i>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="border-color: #FFD700;"> <!-- Dourado no botão -->
@@ -28,6 +28,7 @@
           <li class="nav-item">
             <%#= link_to edit_user_preference_path(current_user.id), class: "nav-link text-white" do %>
             <%= link_to root_path, class: "nav-link text-white" do %>
+              (<%= current_user.email %>)
               <i class="fa-regular fa-user"></i>
             <% end %>
           </li>
